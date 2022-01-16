@@ -42,8 +42,8 @@ def edit_data(request):
     return JsonResponse({"success":True},status=200)
 
 def get_data(request):
-    inventoryObj = serializers.serialize("json",Inventory.objects.all())
-    response = json.loads(inventoryObj)
+    data = serializers.serialize("json",Inventory.objects.all())
+    response = json.loads(data)
     return JsonResponse({"inventories":response},status=200)
 
 def delete_data(request):
@@ -51,3 +51,12 @@ def delete_data(request):
     inventoryObj = Inventory.objects.get(pk=id)
     inventoryObj.delete()
     return JsonResponse({"success":True},status=204)
+
+def download_data(request):
+    response = "id,item,brand,category,stock,price\n"
+    data = serializers.serialize("json",Inventory.objects.all())
+    jsonData = json.loads(data)
+    for entry in jsonData:
+        response += str(entry['pk']) + ',' + entry['fields']['item'] + ',' + entry['fields']['brand'] + ',' + entry['fields']['category'] + ',' + str(entry['fields']['stock']) + ',' + str(entry['fields']['price']) + '\n'
+    return JsonResponse({"success":response},status=200)
+

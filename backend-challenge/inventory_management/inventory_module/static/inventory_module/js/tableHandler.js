@@ -141,6 +141,27 @@ function show_data(data){
     $('#inventory-list-table').append(list);
 }
 
+function download_data(){
+    $.ajax({
+        url: '/inventory/download/',
+        method: 'GET',
+        success: function (data) {
+            const a = document.createElement("a");
+            document.body.appendChild(a);
+            a.style = "display: none";
+            const blob = new Blob([data.success], {type: "octet/stream"}),
+            url = window.URL.createObjectURL(blob);
+            a.href = url;
+            a.download = "download.csv";
+            a.click();
+            window.URL.revokeObjectURL(url);             
+        },
+        failure: function() {
+            alert("Download Failed")
+        }
+    });
+}
+
 $(document).ready(function(){
     get_data();    
 });

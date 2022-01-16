@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^add/$',views.add_data),
     url(r'^get/$',views.get_data),
     url(r'^edit/$',views.edit_data),
-    url(r'^delete/$',views.delete_data)
+    url(r'^delete/$',views.delete_data),
+    url(r'^download/$',views.download_data)
 ]

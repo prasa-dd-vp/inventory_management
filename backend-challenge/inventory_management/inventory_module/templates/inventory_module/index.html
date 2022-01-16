@@ -8,8 +8,8 @@
 
 <body>
     <h1 align='center'> Inventory Management System </h1>
-    <div id="add">
-        <h3 > Add data: </h3>
+    <div style="margin-top: 50px;" id="add">
+        <h3 align='center'> Add data </h3>
         <table align='center' cellspacing=2 cellpadding=5 id="add-data-table" border=1>
             <tr>
                 <th>Item</th>
@@ -26,15 +26,17 @@
                 <td><input type="text" id="category"></td>
                 <td><input type="text" id="stock"></td>
                 <td><input type="text" id="price"></td>
-                <td><input type="button" class="add" onclick="add_data();" value="Add"></td>
+                <td><input type="button"  onclick="add_data();" value="Add"></td>
             </tr>
 
         </table>
     </div>
 
-    <div id="inventory-list">
-        <h3 > Inventory Items: </h3>
-        <table align='center' cellspacing=2 cellpadding=5 id="inventory-list-table" border=1>
+    <div style="margin-top: 100px;" align='center' id="inventory-list">
+        <h3> Inventory Items </h3>
+        <span> <b>Export inventory data:</b></span>
+        <input type="button" style="margin-bottom: 15px;" onclick="download_data();" value="Download CSV data">
+        <table cellspacing=2 cellpadding=5 id="inventory-list-table" border=1>
             <tr>
                 <th>Id</th>
                 <th>Item</th>
